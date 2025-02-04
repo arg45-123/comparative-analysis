@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Comparative Analysis - Drinking Water Survey</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color:rgb(29, 4, 52);
+            padding: 20px;
+        }
+        h1, h2 {
+            color: wheat;
+        }
+        button {
+            background-color: #426f9f;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            margin-top: 10px;
+            font-size: 16px;
+            border-radius: 13px;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        select {
+            padding: 8px;
+            font-size: 16px;
+            margin: 5px;
+            color: aliceblue;
+            background-color: #0056b3;
+            border: 3px solid black;
+            border-radius: 13px;
+        
+        }
+        #comparisonResult {
+            margin-top: 20px;
+            padding: 15px;
+            background: rgb(1, 1, 41);
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+            display: block;
+            width: 50%;
+            margin-left: auto;
+            margin-right: auto;
+            color: aliceblue;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        .label{
+            color: whitesmoke;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Drinking Water Survey</h1>
+    <!-- <button onclick="window.location.href='#comparative-section'">Comparative Analysis</button> -->
+
+    <div id="comparative-section" style="margin-top: 50px;">
+        <h2>Comparative Analysis</h2>
+        <label for="dept1" class="label">Select First Department:</label>
+        <select id="dept1">
+            <option value="CSE">CSE</option>
+            <option value="IT">IT</option>
+            <option value="AIDS_IoT">AIDS & IoT</option>
+            <option value="Civil">Civil</option>
+            <option value="Mech">Mechanical</option>
+            <option value="EXTC">EXTC</option>
+            <option value="Workshop_Canteen">Workshop & Canteen</option>
+        </select>
+
+        <label for="dept2" class="label">Select Second Department:</label>
+        <select id="dept2">
+            <option value="CSE">CSE</option>
+            <option value="IT">IT</option>
+            <option value="AIDS_IoT">AIDS & IoT</option>
+            <option value="Civil">Civil</option>
+            <option value="Mech">Mechanical</option>
+            <option value="EXTC">EXTC</option>
+            <option value="Workshop_Canteen">Workshop & Canteen</option>
+        </select>
+
+        <button onclick="compareDepartments()">Compare</button>
+
+        <div id="comparisonResult"></div>
+    </div>
+
+    <script>
+        const waterData = {
+            CSE: { pH: 7.32, TDS: 360, Hardness: 95, Chlorides: 16.47, DO: 3.7, Turbidity: 0.01},
+            IT: { pH: 7.32, TDS: 198, Hardness: 95, Chlorides: 16.47, DO: 3.7, Turbidity: 0.01 },
+            AIDS_IoT: { pH: 7.40, TDS: 165, Hardness: 130, Chlorides: 52, DO: 3.9, Turbidity: 0 },
+            Civil: { pH: 7.25, TDS: 289, Hardness: 100, Chlorides: 40, DO: 3.6, Turbidity: 0 },
+            Mech: { pH: 7.51, TDS: 279, Hardness: 135, Chlorides: 55, DO: 3.5, Turbidity: 0 },
+            EXTC: { pH: 7.66, TDS: 320, Hardness: 97, Chlorides: 16.49, DO: 3.6, Turbidity: 0 },
+            Workshop_Canteen: { pH: 7.55, TDS: 240, Hardness: 96, Chlorides: 16.51, DO: 3.8, Turbidity: 0 }
+        };
+
+        function compareDepartments() {
+            let dept1 = document.getElementById("dept1").value;
+            let dept2 = document.getElementById("dept2").value;
+
+            if (dept1 === dept2) {
+                alert("Please select two different departments.");
+                return;
+            }
+
+            let data1 = waterData[dept1];
+            let data2 = waterData[dept2];
+
+            let resultHTML = `
+                <h3>Comparison Between ${dept1} and ${dept2}</h3>
+                <table>
+                    <tr>
+                        <th>Parameter</th><th>${dept1}</th><th>${dept2}</th>
+                    </tr>
+                    <tr>
+                        <td>pH</td><td>${data1.pH}</td><td>${data2.pH}</td>
+                    </tr>
+                    <tr>
+                        <td>TDS (ppm)</td><td>${data1.TDS}</td><td>${data2.TDS}</td>
+                    </tr>
+                    <tr>
+                        <td>Hardness (mg/L)</td><td>${data1.Hardness}</td><td>${data2.Hardness}</td>
+                    </tr>
+                    <tr>
+                        <td>Chlorides (mg/L)</td><td>${data1.Chlorides}</td><td>${data2.Chlorides}</td>
+                    </tr>
+                    <tr>
+                        <td>Dissolved Oxygen (DO) (mg/L)</td><td>${data1.DO}</td><td>${data2.DO}</td>
+                    </tr>
+                    <tr>
+                        <td>Turbidity (NTU)</td><td>${data1.Turbidity}</td><td>${data2.Turbidity}</td>
+                    </tr>
+                </table>
+            `;
+
+            document.getElementById("comparisonResult").innerHTML = resultHTML;
+        }
+    </script>
+
+</body>
+</html>
