@@ -66,6 +66,19 @@
         .label{
             color: whitesmoke;
         }
+        .homebtn{
+            color: white;
+            padding: 1rem;
+            
+            align-self: center;
+            background-color: rgb(96, 86, 9);
+            border-radius: 12px;
+            border: 5px solid black;
+            
+        }
+        .homebtn:hover{
+            background-color: #007bff;
+        }
     </style>
 </head>
 <body>
@@ -100,6 +113,9 @@
         <button onclick="compareDepartments()">Compare</button>
 
         <div id="comparisonResult"></div>
+        <br><br><br>
+        
+<a href="https://arg45-123.github.io/frontpage/" class="homebtn">Back to home-page</a>
     </div>
 
     <script>
@@ -155,6 +171,7 @@
             document.getElementById("comparisonResult").innerHTML = resultHTML;
         }
     </script>
+
 
 </body>
 </html>
